@@ -1,7 +1,9 @@
 var express = require('express');
+    bodyParser = require('body-parser');
 
 const 
 	app = express();
+	app.use(bodyParser());
 	app.use(express.static('.'));
 	app.get('/products', function(req, res) {
 		var products = [{"category":"Watersports","description":"A boat for one person","name":"Kayak",
@@ -23,6 +25,11 @@ const
 						 {"category":"Chess","description":"Gold-plated, diamond-studded King",
 						    "name":"Bling-Bling King","price":1200,"id":"59166228d70f8858"}];
 		res.send(products);
-	})
+	});
+
+	app.post('/orders', function(req, res) {
+		console.log(req.body)
+		res.send({id:"0001"});
+	});
 
 	app.listen(5000);
